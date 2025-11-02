@@ -11,6 +11,11 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+
+void find_goat(list<Goat> trip);
+void clear_goats(list<Goat> &trip);
+void shuffle_goats(list<Goat> &trip)
+
 int main_menu();
 
 int main() {
@@ -74,7 +79,11 @@ int main_menu() {
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Quit\n";
+    cout << "[4] Find goat\n";
+    cout << "[5] Clear goats\n";
+    cout << "[6] Shuffle goats\n";
+    cout << "[7] \n";
+    cout << "[8] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
@@ -125,4 +134,25 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+
+//Checks if a goat exists in the list
+void find_goat(list<Goat> trip) {
+    string name;
+    cout << "Choose goat to find: " << endl;
+    cin >> name;
+
+    auto it = find(trip.begin(), trip.end(), );
+    if (it != trip.end())
+    
+}
+
+//Clears all goats
+void clear_goats(list<Goat> &trip) {
+    
+}
+
+//Shuffles the order of the goats
+void shuffle_goats(list<Goat> &trip) {
+
 }
