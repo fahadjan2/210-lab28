@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <algorithm>
+#include <random>
 #include "Goat.h"
 using namespace std;
 
@@ -14,7 +16,7 @@ void display_trip(list<Goat> trip);
 
 void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
-void shuffle_goats(list<Goat> &trip)
+void shuffle_goats(list<Goat> &trip);
 
 int main_menu();
 
@@ -49,7 +51,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 4) {
+    while (sel != 12) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -63,6 +65,38 @@ int main() {
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
+            case 4:
+                cout << "Finding goat.\n";
+                find_goat(trip);
+                break;
+            case 5:
+                cout << "Clearing goat data.\n";
+                clear_goats(trip);
+                break;
+            case 6:
+                cout << "Shuffling goat data.\n";
+                shuffle_goats(trip);
+                break;
+            case 7:
+                cout << ".\n";
+                clear_goats(trip);
+                break;
+            case 8:
+                cout << ".\n";
+                clear_goats(trip);
+                break;
+            case 9:
+                cout << ".\n";
+                clear_goats(trip);
+                break;
+            case 10:
+                cout << ".\n";
+                clear_goats(trip);
+                break;
+            case 11:
+                cout << ".\n";
+                clear_goats(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -70,7 +104,6 @@ int main() {
         sel = main_menu();
     }
     
-
     return 0;
 }
 
@@ -87,7 +120,7 @@ int main_menu() {
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 4) {
+    while (choice < 1 || choice > 12) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -139,20 +172,20 @@ int select_goat(list<Goat> trp) {
 //Checks if a goat exists in the list
 void find_goat(list<Goat> trip) {
     string name;
-    cout << "Choose goat to find: " << endl;
+    cout << "Name of goat to find: " << endl;
     cin >> name;
 
-    auto it = find(trip.begin(), trip.end(), );
-    if (it != trip.end())
-    
+  //  auto it = find(trip.begin(), trip.end(), );
 }
 
 //Clears all goats
 void clear_goats(list<Goat> &trip) {
-    
+    trip.clear();
+    cout << "Goats cleared" << endl;
 }
 
 //Shuffles the order of the goats
 void shuffle_goats(list<Goat> &trip) {
-
+    shuffle(trip.begin(), trip.end(), default_random_engine());
+    cout << "Goats shuffled" << endl;
 }
