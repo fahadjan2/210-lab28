@@ -174,8 +174,14 @@ void find_goat(list<Goat> trip) {
     string name;
     cout << "Name of goat to find: " << endl;
     cin >> name;
+    Goat tempGoat(name);
 
-  //  auto it = find(trip.begin(), trip.end(), );
+    auto it = find(trip.begin(), trip.end(), tempGoat);
+    if (it != trip.end()) {
+        cout << name << " found!" << endl;
+    } else {
+        cout << name << " not found." << endl;
+    }
 }
 
 //Clears all goats
