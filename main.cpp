@@ -18,6 +18,7 @@ void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
 void shuffle_goats(list<Goat> &trip);
 void replace_goat(list<Goat> &trip);
+void reverse_goats(list<Goat> &trip);
 
 int main_menu();
 
@@ -83,8 +84,8 @@ int main() {
                 replace_goat(trip);
                 break;
             case 8:
-                cout << ".\n";
-                clear_goats(trip);
+                cout << "Reversing goat data.\n";
+                reverse_goats(trip);
                 break;
             case 9:
                 cout << ".\n";
@@ -116,8 +117,12 @@ int main_menu() {
     cout << "[4] Find goat\n";
     cout << "[5] Clear goats\n";
     cout << "[6] Shuffle goats\n";
-    cout << "[7] \n";
-    cout << "[8] Quit\n";
+    cout << "[7] Replace goat\n";
+    cout << "[8] Reverse goats\n";
+    cout << "[9] \n";
+    cout << "[10] \n";
+    cout << "[11] \n";
+    cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
@@ -223,4 +228,9 @@ void replace_goat(list<Goat> &trip) {
     advance(it, choice-1);
     trip.erase(it);
     trip.insert(it, tempGoat);
+}
+
+//Reverses goat list
+void reverse_goats(list<Goat> &trip) {
+    reverse(trip.begin(), trip.end());
 }
