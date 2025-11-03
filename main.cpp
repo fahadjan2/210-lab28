@@ -19,6 +19,7 @@ void clear_goats(list<Goat> &trip);
 void shuffle_goats(list<Goat> &trip);
 void replace_goat(list<Goat> &trip);
 void reverse_goats(list<Goat> &trip);
+void replace_all(list<Goat> &trip);
 
 int main_menu();
 
@@ -119,7 +120,7 @@ int main_menu() {
     cout << "[6] Shuffle goats\n";
     cout << "[7] Replace goat\n";
     cout << "[8] Reverse goats\n";
-    cout << "[9] \n";
+    cout << "[9] Replacing all goats\n";
     cout << "[10] \n";
     cout << "[11] \n";
     cout << "[12] Quit\n";
@@ -233,4 +234,27 @@ void replace_goat(list<Goat> &trip) {
 //Reverses goat list
 void reverse_goats(list<Goat> &trip) {
     reverse(trip.begin(), trip.end());
+}
+
+//Replaces all goats with a specific goat
+void replace_all(list<Goat> &trip) {
+    string name, color;
+    int age, choice;
+
+    choice = select_goat(trip);
+    cout << "Replacement data:" << endl;
+    cout << "Name: ";
+    cin >> name;
+    cout << "Age: ";
+    cin >> age;
+    while (age < 0) {
+        cout << "Correct age please" << endl;
+        cin >> age;
+    }
+    cout << "Color:";
+    cin >> color;
+    
+    Goat tempGoat(name, age, color);
+
+    fill(trip.begin(), trip.end(), tempGoat);
 }
