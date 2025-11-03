@@ -16,19 +16,19 @@ void display_trip(list<Goat> trip);
 
 void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
-void shuffle_goats(list<Goat> &trip);
-void replace_goat(list<Goat> &trip);
-void reverse_goats(list<Goat> &trip);
-void replace_all(list<Goat> &trip);
-void age_count(list<Goat> trip);
-void attribute_finder(list<Goat> trip);
+//void shuffle_goats(list<Goat> &trip);
+//void replace_goat(list<Goat> &trip);
+//void reverse_goats(list<Goat> &trip);
+//void replace_all(list<Goat> &trip);
+//void age_count(list<Goat> trip);
+//void attribute_finder(list<Goat> trip);
 
 int main_menu();
 
 int main() {
     srand(time(0));
     bool again;
-    cout << "test1" << endl;
+    cout << "test12" << endl;
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
@@ -80,27 +80,27 @@ int main() {
                 break;
             case 6:
                 cout << "Shuffling goat data.\n";
-                shuffle_goats(trip);
+                //shuffle_goats(trip);
                 break;
             case 7:
                 cout << "Replacing a goat.\n";
-                replace_goat(trip);
+                //replace_goat(trip);
                 break;
             case 8:
                 cout << "Reversing goat data.\n";
-                reverse_goats(trip);
+                //reverse_goats(trip);
                 break;
             case 9:
                 cout << "Replacing all goats.\n";
-                replace_all(trip);
+                //replace_all(trip);
                 break;
             case 10:
                 cout << "Counting average age.\n";
-                age_count(trip);
+                //age_count(trip);
                 break;
             case 11:
                 cout << "Finding if goat attribute exists.\n";
-                clear_goats(trip);
+                //attribute_finder(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -199,7 +199,7 @@ void clear_goats(list<Goat> &trip) {
     cout << "Goats cleared" << endl;
 }
 
-//Shuffles the order of the goats
+/*Shuffles the order of the goats
 void shuffle_goats(list<Goat> &trip) {
     vector<Goat> trip2(trip.begin(), trip.end());
     shuffle(trip2.begin(), trip2.end(), default_random_engine());
@@ -273,3 +273,42 @@ void age_count(list<Goat> trip) {
     int totalScore = accumulate(ages.begin(), ages.end(), 0);
     cout << "Total Score: " << totalScore / count << endl;
 } 
+
+//Asks user what they want to search, then finds an instance of that in the list using the any of algorithm
+void attribute_finder(list<Goat> trip) {
+    int choice;
+    cout << "Enter attribute to find:\n[1] Age\n[2] Color" << endl;
+    cin >> choice;
+    while (choice != 1 && choice != 2) {
+        cout << "Enter again." << endl;
+        cin >> choice;
+    }
+    
+    if (choice == 1) {    
+        cout << "Enter age: " << endl;
+        cin >> choice;
+        while (choice < 0) {
+            cout << "Enter again." << endl;
+            cin >> choice;
+        }
+
+        vector<int> ages;
+        for (auto gt: trip) 
+            ages.push_back(gt.get_age());
+        
+        bool hasage = any_of(ages.begin(), ages.end(), [choice](int age) { return age == choice; });
+        cout << "Has age: " << (hasage ? "Yes" : "No") << endl;
+    } else {
+        string color;
+        cout << "Enter color: " << endl;
+        cin >> color;
+
+        vector<string> colors;
+        for (auto gt: trip) 
+            colors.push_back(gt.get_color());
+        
+        bool hascolor = any_of(colors.begin(), colors.end(), [color](string currentcolor) { return currentcolor == color; });
+        cout << "Has color: " << (hascolor ? "Yes" : "No") << endl;
+    }
+}
+*/
