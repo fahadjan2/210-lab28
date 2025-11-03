@@ -186,6 +186,9 @@ void clear_goats(list<Goat> &trip) {
 
 //Shuffles the order of the goats
 void shuffle_goats(list<Goat> &trip) {
-    shuffle(trip.begin(), trip.end(), default_random_engine());
+    vector<Goat> trip2(trip.begin(), trip.end());
+    shuffle(trip2.begin(), trip2.end(), default_random_engine());
+    copy(trip2.begin(), trip2.end(), trip.begin());
     cout << "Goats shuffled" << endl;
 }
+
