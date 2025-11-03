@@ -20,6 +20,8 @@ void shuffle_goats(list<Goat> &trip);
 void replace_goat(list<Goat> &trip);
 void reverse_goats(list<Goat> &trip);
 void replace_all(list<Goat> &trip);
+void age_count(list<Goat> trip);
+void attribute_finder(list<Goat> trip);
 
 int main_menu();
 
@@ -89,15 +91,15 @@ int main() {
                 reverse_goats(trip);
                 break;
             case 9:
-                cout << ".\n";
-                clear_goats(trip);
+                cout << "Replacing all goats.\n";
+                replace_all(trip);
                 break;
             case 10:
-                cout << ".\n";
-                clear_goats(trip);
+                cout << "Counting average age.\n";
+                age_count(trip);
                 break;
             case 11:
-                cout << ".\n";
+                cout << "Finding if goat attribute exists.\n";
                 clear_goats(trip);
                 break;
             default:
@@ -121,8 +123,8 @@ int main_menu() {
     cout << "[7] Replace goat\n";
     cout << "[8] Reverse goats\n";
     cout << "[9] Replacing all goats\n";
-    cout << "[10] \n";
-    cout << "[11] \n";
+    cout << "[10] Averaging ages of goats\n";
+    cout << "[11] Find attribute\n";
     cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -258,3 +260,16 @@ void replace_all(list<Goat> &trip) {
 
     fill(trip.begin(), trip.end(), tempGoat);
 }
+
+//Counts the average age using accumulate algorithm
+void age_count(list<Goat> trip) {
+    vector<int> ages;
+    int count = 0;
+    for (auto gt: trip) {
+        ages.push_back(gt.get_age());
+        count++;
+    }
+
+    int totalScore = accumulate(ages.begin(), ages.end(), 0);
+    cout << "Total Score: " << totalScore / count << endl;
+} 
