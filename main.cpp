@@ -16,8 +16,8 @@ void display_trip(list<Goat> trip);
 
 void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
-//void shuffle_goats(list<Goat> &trip);
-//void replace_goat(list<Goat> &trip);
+void shuffle_goats(list<Goat> &trip);
+void replace_goat(list<Goat> &trip);
 //void reverse_goats(list<Goat> &trip);
 //void replace_all(list<Goat> &trip);
 //void age_count(list<Goat> trip);
@@ -80,11 +80,11 @@ int main() {
                 break;
             case 6:
                 cout << "Shuffling goat data.\n";
-                //shuffle_goats(trip);
+                shuffle_goats(trip);
                 break;
             case 7:
                 cout << "Replacing a goat.\n";
-                //replace_goat(trip);
+                replace_goat(trip);
                 break;
             case 8:
                 cout << "Reversing goat data.\n";
@@ -185,21 +185,21 @@ void find_goat(list<Goat> trip) {
     cin >> name;
     Goat tempGoat(name);
 
-    auto it = find(trip.begin(), trip.end(), tempGoat);
+    /*auto it = find(trip.begin(), trip.end(), tempGoat);
     if (it != trip.end()) {
         cout << name << " found!" << endl;
     } else {
         cout << name << " not found." << endl;
-    }
+    }*/
 }
 
 //Clears all goats
 void clear_goats(list<Goat> &trip) {
-    trip.clear();
+    //trip.clear();
     cout << "Goats cleared" << endl;
 }
 
-/*Shuffles the order of the goats
+//Shuffles the order of the goats
 void shuffle_goats(list<Goat> &trip) {
     vector<Goat> trip2(trip.begin(), trip.end());
     shuffle(trip2.begin(), trip2.end(), default_random_engine());
@@ -222,7 +222,7 @@ void replace_goat(list<Goat> &trip) {
         cout << "Correct age please" << endl;
         cin >> age;
     }
-    cout << "Color:";
+    cout << "Color: ";
     cin >> color;
     
     Goat tempGoat(name, age, color);
@@ -230,10 +230,11 @@ void replace_goat(list<Goat> &trip) {
     auto it = trip.begin();
     advance(it, choice-1);
     trip.erase(it);
-    trip.insert(it, tempGoat);
+    cout << "z" << endl;
+    //trip.insert(it, tempGoat);
 }
 
-//Reverses goat list
+/*Reverses goat list
 void reverse_goats(list<Goat> &trip) {
     reverse(trip.begin(), trip.end());
 }
