@@ -13,16 +13,14 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
-
 void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
 void shuffle_goats(list<Goat> &trip);
 void replace_goat(list<Goat> &trip);
-//void reverse_goats(list<Goat> &trip);
-//void replace_all(list<Goat> &trip);
-//void age_count(list<Goat> trip);
-//void attribute_finder(list<Goat> trip);
-
+void reverse_goats(list<Goat> &trip);
+void replace_all(list<Goat> &trip);
+void age_count(list<Goat> trip);
+void attribute_finder(list<Goat> trip);
 int main_menu();
 
 int main() {
@@ -88,19 +86,19 @@ int main() {
                 break;
             case 8:
                 cout << "Reversing goat data.\n";
-                //reverse_goats(trip);
+                reverse_goats(trip);
                 break;
             case 9:
                 cout << "Replacing all goats.\n";
-                //replace_all(trip);
+                replace_all(trip);
                 break;
             case 10:
                 cout << "Counting average age.\n";
-                //age_count(trip);
+                age_count(trip);
                 break;
             case 11:
                 cout << "Finding if goat attribute exists.\n";
-                //attribute_finder(trip);
+                attribute_finder(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -180,22 +178,25 @@ int select_goat(list<Goat> trp) {
 
 //Checks if a goat exists in the list
 void find_goat(list<Goat> trip) {
+    vector<string> names;
+    for (auto gt : trip) 
+        names.push_back(gt.get_name());
+    
     string name;
     cout << "Name of goat to find: " << endl;
     cin >> name;
-    Goat tempGoat(name);
-
-    /*auto it = find(trip.begin(), trip.end(), tempGoat);
-    if (it != trip.end()) {
+    
+    auto it = find(names.begin(), names.end(), name);
+    if (it != names.end()) {
         cout << name << " found!" << endl;
     } else {
         cout << name << " not found." << endl;
-    }*/
+    }
 }
 
 //Clears all goats
 void clear_goats(list<Goat> &trip) {
-    //trip.clear();
+    trip.clear();
     cout << "Goats cleared" << endl;
 }
 
@@ -229,12 +230,11 @@ void replace_goat(list<Goat> &trip) {
 
     auto it = trip.begin();
     advance(it, choice-1);
-    trip.erase(it);
-    cout << "z" << endl;
-    //trip.insert(it, tempGoat);
+    it = trip.erase(it);
+    trip.insert(it, tempGoat);
 }
 
-/*Reverses goat list
+//Reverses goat list
 void reverse_goats(list<Goat> &trip) {
     reverse(trip.begin(), trip.end());
 }
@@ -244,7 +244,6 @@ void replace_all(list<Goat> &trip) {
     string name, color;
     int age, choice;
 
-    choice = select_goat(trip);
     cout << "Replacement data:" << endl;
     cout << "Name: ";
     cin >> name;
@@ -254,7 +253,7 @@ void replace_all(list<Goat> &trip) {
         cout << "Correct age please" << endl;
         cin >> age;
     }
-    cout << "Color:";
+    cout << "Color: ";
     cin >> color;
     
     Goat tempGoat(name, age, color);
@@ -272,7 +271,7 @@ void age_count(list<Goat> trip) {
     }
 
     int totalScore = accumulate(ages.begin(), ages.end(), 0);
-    cout << "Total Score: " << totalScore / count << endl;
+    cout << "Average Age: " << totalScore / count << endl;
 } 
 
 //Asks user what they want to search, then finds an instance of that in the list using the any of algorithm
@@ -312,4 +311,3 @@ void attribute_finder(list<Goat> trip) {
         cout << "Has color: " << (hascolor ? "Yes" : "No") << endl;
     }
 }
-*/
