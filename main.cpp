@@ -17,13 +17,14 @@ void display_trip(list<Goat> trip);
 void find_goat(list<Goat> trip);
 void clear_goats(list<Goat> &trip);
 void shuffle_goats(list<Goat> &trip);
+void replace_goat(list<Goat> &trip);
 
 int main_menu();
 
 int main() {
     srand(time(0));
     bool again;
-
+    cout << "test1" << endl;
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
@@ -78,8 +79,8 @@ int main() {
                 shuffle_goats(trip);
                 break;
             case 7:
-                cout << ".\n";
-                clear_goats(trip);
+                cout << "Replacing a goat.\n";
+                replace_goat(trip);
                 break;
             case 8:
                 cout << ".\n";
@@ -198,3 +199,28 @@ void shuffle_goats(list<Goat> &trip) {
     cout << "Goats shuffled" << endl;
 }
 
+//Replaces a specific goat
+void replace_goat(list<Goat> &trip) {
+    string name, color;
+    int age, choice;
+
+    choice = select_goat(trip);
+    cout << "Replacement data:" << endl;
+    cout << "Name: ";
+    cin >> name;
+    cout << "Age: ";
+    cin >> age;
+    while (age < 0) {
+        cout << "Correct age please" << endl;
+        cin >> age;
+    }
+    cout << "Color:";
+    cin >> color;
+    
+    Goat tempGoat(name, age, color);
+
+    auto it = trip.begin();
+    advance(it, choice-1);
+    trip.erase(it);
+    trip.insert(it, tempGoat);
+}
